@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>subreddit</title>
-    <link rel="stylesheet" href="/app.css">
-</head>
-<body>
+<%- include('partials/head.ejs') %>
+
+    <%- include('partials/navbar.ejs') %>
     <h1>Browsing the <%= data.name %> subreddit</h1>
     <h2> <%= data.description %> </h2>
     <p> <%= data.subscribers %> total subscribers </p>
@@ -21,5 +15,5 @@
              <% } %>
         </article>
     <% } %>
-</body>
-</html>
+    
+    <%- include('partials/footer.ejs') %> 

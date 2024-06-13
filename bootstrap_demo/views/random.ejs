@@ -1,0 +1,12 @@
+<%- include('partials/head.ejs') %>
+    <%- include('partials/navbar.ejs') %>
+    <h1>The random number is : <%= random %> </h1>
+    <% if(random % 2 === 0){ %>
+        <h2>the random number generated is even</h2>
+    <% } else { %> 
+        <h2>the random number generated is odd</h2>
+    <% } %>
+    
+    <p>an alternate way of achieving the same functionality : </p>
+    <h3>that number is : <%= random%2 === 0 ? 'Even' : 'odd' %> </h3>
+    <%- include('partials/footer.ejs') %> 
