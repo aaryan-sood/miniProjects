@@ -55,6 +55,17 @@ app.get('/comments/:id',(req,res) => {
 
 })
 
+app.patch('/comments/:id',(req,res) => {
+    let {id}=req.params
+    console.log(id)
+    let {comment}=req.body
+    let foundComment=comments.find((obj) => {
+        return obj.id === id;
+    })
+    foundComment.comment=comment;
+    res.redirect('/comments')
+})
+
 app.listen(port,() => {
     console.log(`listening on port ${port}`)
 })
