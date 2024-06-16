@@ -77,6 +77,15 @@ app.get('/comments/:id/edit',(req,res) => {
     console.log(comment)
     res.render('comments/edit.ejs',{comment})
 })
+
+// to delete a comment
+app.delete('/comments/:id',(req,res) => {
+    let {id}=req.params
+    comments=comments.filter((obj) => {
+        return obj.id !== id
+    })
+    res.redirect('/comments')
+})
 app.listen(port,() => {
     console.log(`listening on port ${port}`)
 })
