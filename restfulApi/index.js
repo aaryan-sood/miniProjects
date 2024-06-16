@@ -1,6 +1,7 @@
 const express=require('express')
 const path=require('path')
 const {v4 : uuid} = require('uuid')
+const methodOverride=require('method-override')
 let port=8080
 
 let app=express()
@@ -8,6 +9,7 @@ app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'/views'))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.use(methodOverride('_method'))
 
 let comments = [
     {
@@ -55,9 +57,9 @@ app.get('/comments/:id',(req,res) => {
 
 })
 
+// to update comment
 app.patch('/comments/:id',(req,res) => {
     let {id}=req.params
-    console.log(id)
     let {comment}=req.body
     let foundComment=comments.find((obj) => {
         return obj.id === id;
@@ -66,6 +68,15 @@ app.patch('/comments/:id',(req,res) => {
     res.redirect('/comments')
 })
 
+// to display a form to update comments 
+app.get('/comments/:id/edit',(req,res) => {
+    let {id}=req.params
+    const comment=comments.find((obj) => {
+        return obj.id === id;
+    })
+    console.log(comment)
+    res.render('comments/edit.ejs',{comment})
+})
 app.listen(port,() => {
     console.log(`listening on port ${port}`)
 })
